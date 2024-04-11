@@ -1,0 +1,18 @@
+{
+    "name": "trillium-rust-extras",
+    "image": "mcr.microsoft.com/devcontainers/rust:1-1-bookworm",
+    "mounts": [
+		{
+	 		"source": "${devcontainerId}-cargo-cache",
+	 		"target": "/usr/local/cargo",
+	 		"type": "volume"
+	 	},
+		{
+			"source": "${devcontainerId}-target",
+			"target": "${containerWorkspaceFolder}/target",
+			"type": "volume"
+		}
+    ],
+	"containerUser": "root",
+	"remoteUser": "root"
+}
