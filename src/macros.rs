@@ -7,7 +7,6 @@ macro_rules! conn_try {
         match $expr {
             Ok(value) => value,
             Err(error) => {
-                tracing::warn!("{}:{} conn_try error: {}", file!(), line!(), error);
                 use $crate::error::ConnApiErrorExt;
                 #[cfg(debug_assertions)]
                 return $conn.error($error
@@ -33,7 +32,6 @@ macro_rules! conn_unwrap {
         match $expr {
             Some(value) => value,
             None => {
-                tracing::warn!("{}:{} conn_unwrap None", file!(), line!());
                 use $crate::error::ConnApiErrorExt;
                 return $conn.error($error);
             }
