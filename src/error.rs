@@ -12,13 +12,13 @@ where
 
 #[derive(Debug, Clone, Serialize)]
 pub struct ApiError {
-    r#type: &'static str,
-    title: &'static str,
+    pub r#type: &'static str,
+    pub title: &'static str,
     #[serde(serialize_with = "status_serialize")]
-    status: Status,
-    detail: &'static str,
+    pub status: Status,
+    pub detail: &'static str,
     #[serde(flatten)]
-    data: Option<Value>,
+    pub data: Option<Value>,
 }
 
 #[allow(unused)]
