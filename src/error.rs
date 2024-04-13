@@ -1,4 +1,4 @@
-use casey::lower;
+pub use casey::lower;
 use serde::{Serialize, Serializer};
 use serde_json::{json, Value};
 use trillium::{Conn, KnownHeaderName, Status};
@@ -61,9 +61,9 @@ macro_rules! prefab_errors {
         $(
             #[allow(unused)]
             pub const $i: $crate::error::ApiError = $crate::error::ApiError {
-                r#type: concat!($base_url, lower!(stringify!($i))),
+                r#type: concat!($base_url, $crate::error::lower!(stringify!($i))),
                 title: $t,
-                status: Status::$s,
+                status: trillium::Status::$s,
                 detail: $d,
                 data: None,
             };
