@@ -42,6 +42,7 @@ macro_rules! conn_unwrap {
 #[macro_export]
 macro_rules! extract_payload {
     ($conn:expr, $type:ident) => {{
+        use $crate::json_body::JsonBodyConnExt;
         let payload: $type = $crate::conn_try!(
             $conn.request_body_json().await,
             $conn,
