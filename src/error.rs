@@ -1,6 +1,7 @@
 pub use casey::lower;
 use serde::{Serialize, Serializer};
 use serde_json::{json, Value};
+use thiserror::Error;
 use trillium::{Conn, KnownHeaderName, Status};
 
 fn status_serialize<S>(status: &Status, s: S) -> Result<S::Ok, S::Error>
@@ -10,7 +11,8 @@ where
     s.serialize_u16((*status).into())
 }
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Error)]
+#[error("an api error occured: {title}")]
 pub struct ApiError {
     pub r#type: &'static str,
     pub title: &'static str,
